@@ -27,3 +27,20 @@ services:
       LDAP_ROOT: dc=example,dc=org
       LDAP_HOST: openldap
       LDAP_PORT: 1389
+  agent:
+    build: okta-ldap-agent
+    container_name: ldap-agent
+    hostname: ldap-agent
+    depends_on:
+      - openldap
+    links:
+      - openldap:openldap
+    environment:
+      OKTA_URL: ${OKTA_URL}
+      LDAP_HOST: openldap
+      LDAP_PORT: 1389
+      LDAP_ROOT: dc=example,dc=org
+      LDAP_ADMIN_USERNAME: cn=admin,dc=example,dc=org
+      LDAP_ADMIN_PASSWORD: adminpassword
+    volumes:
+      - ./okta-ldap-agent/conf:/opt/Okta/OktaLDAPAgent/conf

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <!-- Logback has access to the properties files of our app -->
+    <property resource="default.properties"/>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <!--[ %T ] [ %t ][ %5p] [%c{1}:%L] [org=%o, aid=%u, method=%S] - %m%n-->
+            <pattern>[ %date{yyyy-MM-dd HH:mm:ss.SSS} ] [ %thread ] [ %-5level ] [%logger{0}:%L] - %message %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
