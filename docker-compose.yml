@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  openldap:
+    image: bitnami/openldap:2
+    container_name: openldap
+    hostname: openldap
+    ports:
+      - 1389:1389
+      - 1636:1636
+    environment:
+      LDAP_ADMIN_USERNAME: admin
+      LDAP_ADMIN_PASSWORD: adminpassword
+      LDAP_ROOT: dc=example,dc=org
+    volumes:
+      - ./openldap_data:/bitnami/openldap
+      - ./ldifs:/ldifs
+  webapp:
+    build: .
+    depends_on:
+      - openldap
+    links:
+      - openldap:openldap
+    ports:
+      - 8080:8080
+    environment:
+      LDAP_ROOT: dc=example,dc=org
+      LDAP_HOST: openldap
+      LDAP_PORT: 1389

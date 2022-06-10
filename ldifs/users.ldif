@@ -1,0 +1,80 @@
+# example.org
+dn: dc=example,dc=org
+objectClass: dcObject
+objectClass: organization
+dc: example
+o: example
+
+###################
+## Group Membership
+###################
+
+# groups, example.org
+dn: ou=groups,dc=example,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=allusers,ou=groups,dc=example,dc=org
+objectClass: posixGroup
+cn: allusers
+gidNumber: 101
+memberUid: cn=user01,ou=users,dc=example,dc=org
+memberUid: cn=user02,ou=users,dc=example,dc=org
+memberUid: cn=user03,ou=users,dc=example,dc=org
+
+###################
+## Users
+###################
+
+# users, example.org
+dn: ou=users,dc=example,dc=org
+objectClass: organizationalUnit
+ou: users
+
+# user01, users, example.org
+dn: cn=user01,ou=users,dc=example,dc=org
+cn: User1
+cn: user01
+givenname: User1
+sn: Bar1
+mail: user01@example.com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword:: cGFzc3dvcmQx
+uid: user01
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/user01
+
+# user02, users, example.org
+dn: cn=user02,ou=users,dc=example,dc=org
+cn: User2
+cn: user02
+givenname: User2
+sn: Bar2
+mail: user02@example.com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword:: cGFzc3dvcmQy
+uid: user02
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/user02
+
+# user03, users, example.org
+dn: cn=user03,ou=users,dc=example,dc=org
+cn: User3
+cn: user03
+givenname: User3
+sn: Bar3
+mail: user03@example.com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword:: cGFzc3dvcmQy
+uid: user03
+uidNumber: 1002
+gidNumber: 1002
+homeDirectory: /home/user03
