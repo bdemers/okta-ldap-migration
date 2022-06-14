@@ -24,9 +24,13 @@ services:
     ports:
       - 8080:8080
     environment:
-      LDAP_ROOT: dc=example,dc=org
-      LDAP_HOST: openldap
-      LDAP_PORT: 1389
+      # from .env file
+      OKTA_URL: ${OKTA_URL}
+      OKTA_LDAP_ID: ${OKTA_LDAP_ID}
+      OKTA_LDAP_HOST: ${OKTA_LDAP_HOST}
+      OKTA_LDAP_BASE: ${OKTA_LDAP_BASE}
+      OKTA_LDAP_USERNAME: ${OKTA_LDAP_USERNAME}
+      OKTA_LDAP_PASSWORD: ${OKTA_LDAP_PASSWORD}
   agent:
     build: okta-ldap-agent
     container_name: ldap-agent
@@ -36,6 +40,7 @@ services:
     links:
       - openldap:openldap
     environment:
+      # from .env file
       OKTA_URL: ${OKTA_URL}
       LDAP_HOST: openldap
       LDAP_PORT: 1389
