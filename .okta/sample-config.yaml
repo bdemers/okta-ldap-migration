@@ -7,5 +7,4 @@ directions: |+2
   Okta configuration written to .env
   Add this file to .gitignore!
   Run these application with:
-      source .env
       docker compose up
